@@ -1,0 +1,22 @@
+@baseUrl = http://localhost:8080/auth
+
+# @name login
+POST {{baseUrl}}/realms/master/protocol/openid-connect/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=password&client_id=admin-cli&client_secret=passwword&username=admin&password=Pa55w0rd
+
+
+###
+
+@authToken = {{login.response.body.access_token}}
+
+###
+
+GET {{baseUrl}}/admin/realms/master/users
+Authorization: Bearer {{authToken}}
+
+###
+
+GET {{baseUrl}}/admin/realms/master/users/ff0c626f-61aa-4030-a7b8-02e1dcf0cd23
+Authorization: Bearer {{authToken}}
