@@ -26,3 +26,4 @@ for u in response.json():
         url = f"http://localhost:8080/auth/admin/realms/master/users/{u['id']}"
         response = requests.request("PUT", url, headers=headers, json=u)
         print(response.text)
+        
